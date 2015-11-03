@@ -3,6 +3,15 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        php: {
+            dist: {
+                options: {
+                    base: 'build',
+                    port: 8888,
+                    open: true
+                }
+            }
+        },
         sass: {
             build: {
                 options : {
@@ -38,7 +47,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'src',
-                        src: ['**/*.html'],
+                        src: ['**/*.{php,html}'],
                         dest: 'build/'
                     }
                 ]
@@ -54,7 +63,7 @@ module.exports = function(grunt) {
                 tasks: ['sass']
             },
             html: {
-                files: ['src/**/*.html'],
+                files: ['src/**/*.{html,php}'],
                 tasks: ['htmlmin']
             }
         }
@@ -66,9 +75,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-php');
 
     // register tasks
     grunt.registerTask('default', ['watch']);
+    grunt.registerTask('serve', ['sass', 'uglify', 'htmlmin', 'php', 'watch']);
     grunt.registerTask('build', ['sass', 'uglify', 'htmlmin']);
 
 };

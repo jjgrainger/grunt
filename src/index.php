@@ -18,7 +18,9 @@
     </head>
 
     <body>
+        <h1><?php echo 'Test'; ?></h1>
 
+        <p>This is a test</p>
     </body>
     <script type="text/javascript" src="assets/js/app.min.js"></script>
 </html>
