@@ -1,0 +1,19 @@
+{
+  "name": "grunt",
+  "version": "0.0.0",
+  "authors": [
+    "Joe Grainger <joe@venncreative.co.uk>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components/",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.4"
+  }
+}
