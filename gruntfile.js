@@ -30,10 +30,16 @@ module.exports = function(grunt) {
                 }
             }
         },
+        concat: {
+          dist: {
+            src: ['src/assets/js/**/*.js'],
+            dest: 'build/assets/js/app.js',
+          },
+        },
         uglify : {
             my_target: {
                 files: {
-                    'build/assets/js/app.min.js' : 'src/assets/js/app.js'
+                    'build/assets/js/app.min.js' : 'build/assets/js/app.js'
                 }
             }
         },
@@ -56,7 +62,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['src/assets/js/**/*.js'],
-                tasks: ['jshint', 'uglify']
+                tasks: ['jshint', 'concat', 'uglify']
             },
             sass: {
                 files: ['src/assets/sass/**/*.{scss,sass}'],
@@ -71,6 +77,7 @@ module.exports = function(grunt) {
 
     // Load tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -78,8 +85,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-php');
 
     // register tasks
-    grunt.registerTask('default', ['watch']);
-    grunt.registerTask('serve', ['sass', 'uglify', 'htmlmin', 'php', 'watch']);
-    grunt.registerTask('build', ['sass', 'uglify', 'htmlmin']);
+    grunt.registerTask('default', ['watch']); // default
+    grunt.registerTask('serve', ['sass', 'concat', 'uglify', 'htmlmin', 'php', 'watch']); // this should be default maybe - build/serve/watch
+    grunt.registerTask('build', ['sass', 'concat', 'uglify', 'htmlmin']); // build
 
 };
